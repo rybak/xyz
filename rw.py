@@ -1,6 +1,7 @@
 
 from PIL import Image, ImageDraw
 import scipy.spatial as ss
+import sys
 import random
 import numpy as np
 from numpy.linalg import inv
@@ -58,9 +59,8 @@ def mutualInformation(A, B):
 	X /= len(X)
 	Y = rankdata(B)
 	Y /= len(Y)
-	S = 50
-	alpha = 0.99
-
+	S = int(sys.argv[1])
+	alpha = float(sys.argv[2])
 	res = 0;
 	forTree = np.transpose(np.array([X, Y]))
 	tree = ss.cKDTree(forTree)
