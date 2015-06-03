@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 
 from PIL import Image, ImageDraw
 import scipy.spatial as ss
@@ -59,24 +60,29 @@ def mutualInformation(A, B):
     X /= len(X)
     Y = rankdata(B)
     Y /= len(Y)
-    S = int(sys.argv[1])
-    alpha = float(sys.argv[2])
     res = 0;
     forTree = np.transpose(np.array([X, Y]))
     tree = ss.cKDTree(forTree)
     cnt = 0
     for i in range(len(A)):
-        pp = tree.query(forTree[i],S,p=2)[0] #find nearest S+1 distances
+        pp = tree.query(forTree[i],arg_S,p=2)[0] # find nearest arg_S+1 distances
         pp = np.power(pp,(1-alpha)*2)
         res += np.sum(pp)
-    res = res / S
+    res = res / arg_S
     res = res / np.power(len(A),alpha)
     res = np.log(res)
     res = res / (1 - alpha)    
     return res
 
-
-                                    
+# default values
+arg_S = 50
+alpha = 0.99
+# if supplied, use non-default
+print(len(sys.argv))
+if (len(sys.argv) == 3):
+    arg_S = int(sys.argv[1])
+    alpha = float(sys.argv[2])
+print("S = {:d} , alpha = {:.3f}".format(arg_S, alpha))
 
 imX = fromImageToArray('x.bmp')
 imY = fromImageToArray('y.bmp')
