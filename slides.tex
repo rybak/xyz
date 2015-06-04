@@ -50,14 +50,13 @@
     \maketitle
 \end{frame}
 }
-
-\begin{frame}
-{Взаимная информация}
+\begin{frame}{Определения}
+Взаимная информация
 $$
 I(X) = \sum\limits_{i=1}^{d} H(X_i) - H(X_1, \dots, X_d) 
 $$
-$
-I(X_1, \dots, X_d) = 0  \iff $ independence
+
+% $ I(X_1, \dots, X_d) = 0  \iff $ независимость
 
 Энтропия
 $$
@@ -67,7 +66,7 @@ $$
 - \int f (x_1 \dots x_d) \log f (x_1 \dots x_d) d x_1 \dots d x_d
 $$
 \end{frame}
-\begin{frame}
+\begin{frame}{Определения}
 Информация Реньи
 $$
 I_{\alpha}  (X_1 \dots X_d)  = D_{\alpha}
@@ -85,15 +84,44 @@ f^{\alpha} (x_1 \dots x_d)  dx_1 \dots dx_d
 $$
 
 $$
-\lim_{\alpha \to 1} I_{\alpha} = I \quad \lim_{\alpha \to 1} H_{\alpha} = H
+\lim_{\alpha \to 1} I_{\alpha} = I \quad \quad \lim_{\alpha \to 1} H_{\alpha} = H
 $$
 \end{frame}
 
 \begin{frame}
+    Пусть $V$ — множество точек в $\mathbb R^w$.
+    
+    $NN_S(V)$ — множество пар ближайжих соседей. $S$ — множество индексов.
+
+    $$ L_p(V) = \sum\limits_{( \mathbf x,\mathbf y) \in NN_S(V)} \| \mathbf x - \mathbf y\|^p $$
+
+    Пусть $ X = X_1 \dots X_n $ — выборка из $[0,1]^d$. $\exists \gamma : $
+
+    $$\lim_{n\to\infty}\frac{L_p(\mathbf X)}{n^{1-p/d}}  = \gamma  $$
+
+\end{frame}
+
+% \begin{frame}
+% Оценка взаимной информации источников с помощью копульного преобразования.
+% \end{frame}
+
+\begin{frame}
+    Пусть $ \mathbf X $ — выборка по $\mathbb R^d$ из распределения с плотностью $f$.
+    Оцениваем $H_\alpha(\mathbf X)$ ($\alpha \in (0,1)$):
+
+    $$ \widehat H_\alpha (\mathbf X) = \frac {1}{1-\alpha} \log \frac{L_p(\mathbf X) }{\gamma n^{1-p/d}}$$,
+    где $p= d(1-\alpha) $
+
+    $$\lim_{n\to \infty} \widehat H_\alpha (\mathbf X) = H_\alpha(f) $$
+\end{frame}
+
+
+\begin{frame}
+    Взаимная информация сохраняется после монотонных преобразований:
+
     Пусть $ \mathbf Z = (Z_1 \dots Z_d) = (g_1(X_1) \dots g_d(X_d)) = g(\mathbf X)  $, где 
     $ g_j : \mathbb R \to \mathbb R, j = 1 \dots d $ — монотонная функция
 
-    Информация сохраняется после монотонных преобразований:
 
     $I_\alpha(\mathbf Z) = \int_{Z} \left ( \frac{f_{\mathbf Z}(\mathbf z)}{\prod_{j=1}^d f_{Z_j}(z_j)} \right )^\alpha
     \left ( \prod\limits_{j=1}^d f_{Z_j}(z_j) \right ) d {\mathbf z} = I_\alpha (\mathbf X)
@@ -115,24 +143,86 @@ $\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
 
 \pause
 
-Решение: использовать эмпирические $F^n_j $ и эмпирическое копульное
+Решение: использовать эмпирические $\widehat F_j $ и эмпирическое копульное
 преобразование.
+\end{frame}
+\begin{frame}
+    \frametitle{Эмпирическое копульное преобразование}
+    $$ \widehat F_j(x) = \frac{1}{n} | \{i : 1 \le i \le n, x \le X^j_i \} | $$
+
+    Эмпирическая копула:
+
+    $$ (\widehat{\mathbf Z}_1\dots \widehat{ \mathbf Z}_n) = (\widehat F(X_1) \dots \widehat F(X_n) $$
+
+
 \end{frame}
 
 \begin{frame}
-    \frametitle{Эмпирическое копульное преобразование}
-    $$\mathbf X = [X_1 \dots X_d] \to [F_1(X_1) \dots F_d(X_d)] = [Z_1 \dots Z_d] = \mathbf Z $$
-    Приблизим $F_1 \dots F_d $
-    $$[ X^{(1)}_j \le \dots \le X^{(n)}_j ] = sort \{X^1_j \dots X^n_j \}$$
-\end{frame}
-\begin{frame}
-    \frametitle{Входные данные}
+    Есть три изображения.
     \includegraphics[scale=0.5]{x.png}
     \includegraphics[scale=0.5]{y.png}
     \includegraphics[scale=0.5]{z.png}
+
+    Генерируем выборку размером $n$:
+    берем $n$ троек случайных черных точек из 1го, 2го и 3го изображения.
+
+    Получили матрицу $[6 \times n]$.
+
+    Умножаем на случайную матрицу $[6\times6]$.
+
+    Получаем $\mathbf X = (\mathbf X_1 \dots \mathbf X_n)$
+
+    Задача: зная только $\mathbf X$, восстановить исходные изображения.
+
+\end{frame}
+
+\begin{frame}
+Первое решение:
+
+\begin{itemize}
+    \item $Y = W X $
+    \item Найдем такое $W$, что $ I (Y_1, Y_2,Y_3) $ — максимально
+\end{itemize}
+\pause
+Проблемы:
+требует двумерное копульное преобразование,
+медленная оптимизация.
+\end{frame}
+
+\begin{frame}
+    Второе решение:
+    \begin{itemize}
+        \item Найдем $W_{ICA}$ с помощью FastICA
+        \item $\widehat Y = W_{ICA} X $
+        \item Найти перестановку строк $\widehat Y$, из которой можно получить исходные изображения.
+        \item $\mathop{argmax}\limits_{j_1 \dots j_6} I(Y_{j_1}, Y_{j_2}) + I(Y_{j_3}, Y_{j_4})  + I(Y_{j_5}, Y_{j_6}) $
+        \item Используем $ S = \{ 1, 2, 3, 4 \} $, $\alpha = 0.99$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    $n = 200$
+
+    \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=200}.png}
 \end{frame}
 \begin{frame}
+    $n = 2000$
 
+    \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=2000}.png}
+\end{frame}
+\begin{frame}
+    $n = 20000$
+
+    \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=20000}.png}
+\end{frame}
+
+\begin{frame}
+Статья:
+
+Dávid Pál, Barnabás Póczos, Csaba Szepesvári:
+Estimation of Renyi Entropy and Mutual Information Based on Generalized Nearest-Neighbor Graphs
+
+http://david.palenica.com/papers/nn/Renyi-rates-NIPS-camera-ready-final.pdf
 \end{frame}
 \end{document}
 
