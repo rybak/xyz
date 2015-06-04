@@ -90,7 +90,7 @@ def evalNearest(forTree):
     tree = ss.cKDTree(forTree)
     res = 0
     for i in range(len(forTree)):
-        pp = tree.query(forTree[i], arg_S, p=2)[0] # find nearest arg_S+1 distances
+        pp = tree.query(forTree[i], arg_S + 1, p=2)[0] # find nearest arg_S distances
         pp = np.power(pp, (1-alpha)*2)
         res += np.sum(pp)
     return res
