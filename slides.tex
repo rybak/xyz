@@ -88,7 +88,7 @@ $$
 $$
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Определения}
     Пусть $V$ — множество точек в $\mathbb R^w$.
     
     $NN_S(V)$ — множество пар ближайжих соседей. $S$ — множество индексов.
@@ -101,11 +101,7 @@ $$
 
 \end{frame}
 
-% \begin{frame}
-% Оценка взаимной информации источников с помощью копульного преобразования.
-% \end{frame}
-
-\begin{frame}
+\begin{frame}{Оценка взаимной информации с помощью копульного преобразования.}
     Пусть $ \mathbf X $ — выборка по $\mathbb R^d$ из распределения с плотностью $f$.
     Оцениваем $H_\alpha(\mathbf X)$ ($\alpha \in (0,1)$):
 
@@ -157,7 +153,7 @@ $\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Задача}
     Есть три изображения.
     \includegraphics[scale=0.5]{x.png}
     \includegraphics[scale=0.5]{y.png}
@@ -178,7 +174,6 @@ $\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
 
 \begin{frame}
 Первое решение:
-
 \begin{itemize}
     \item $Y = W X $
     \item Найдем такое $W$, что $ I (Y_1, Y_2,Y_3) $ — максимально
@@ -200,17 +195,20 @@ $\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
     \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Результат}
     $n = 200$
+% NEW LINE, don't erase
 
     \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=200}.png}
 \end{frame}
-\begin{frame}
+
+\begin{frame}{Результат}
     $n = 2000$
 
     \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=2000}.png}
 \end{frame}
-\begin{frame}
+
+\begin{frame}{Результат}
     $n = 20000$
 
     \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=20000}.png}
@@ -224,5 +222,6 @@ Estimation of Renyi Entropy and Mutual Information Based on Generalized Nearest-
 
 http://david.palenica.com/papers/nn/Renyi-rates-NIPS-camera-ready-final.pdf
 \end{frame}
+
 \end{document}
 
