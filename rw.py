@@ -9,6 +9,7 @@ from numpy.linalg import inv
 from sklearn.decomposition import FastICA
 from scipy.stats import rankdata
 
+from latex import *
 # default values
 arg_S = 4
 alpha = 0.99
@@ -135,7 +136,7 @@ ans = ica.fit_transform(np.transpose(S))
 
 S = np.transpose(ans)
 
-
+output = []
 best = 1000000000000
 for i in range(1,6):
     S[i], S[1] = S[1].copy(), S[i].copy()
@@ -143,6 +144,7 @@ for i in range(1,6):
         S[j], S[3] = S[3].copy(), S[j].copy()
         mi = mutualInformation(S[0], S[1]) + mutualInformation(S[2], S[3]) + mutualInformation(S[4], S[5])
         print(mi)
+        output.append([str(mi)])
         if mi < best:
             best = mi
             l = S.copy()
@@ -155,5 +157,13 @@ putImage(Y[0])
 putImage(Y[1])
 putImage(Y[2])
 print("Best = ", best)
+output.append(["Best = " + str(best)])
+
+output_file = open("output{:d}.txt".format(sampleSize),'w')
+begin_tabular(output_file, "r")
+table_tabular(output_file, output)
+end_tabular(output_file)
+output_file.close()
+
 print("Maximum sum of mutual information = ", -best)
 showImage()

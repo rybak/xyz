@@ -15,9 +15,10 @@
 \setcounter{secnumdepth}{0}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{array}
+% \usepackage{array}
 % \setlength\extrarowheight{5pt}
-\renewcommand{\arraystretch}{2.3}
+% \renewcommand{\arraystretch}{2.3}
+\usepackage{adjustbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{minted}
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -188,8 +189,8 @@ $\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
     Второе решение:
     \begin{itemize}
         \item Найдем $W_{ICA}$ с помощью FastICA
-        \item $\widehat Y = W_{ICA} X $
-        \item Найти перестановку строк $\widehat Y$, из которой можно получить исходные изображения.
+        \item $ Y = W_{ICA} X $
+        \item Найти перестановку строк $Y$, из которой можно получить исходные изображения.
         \item $\mathop{argmax}\limits_{j_1 \dots j_6} I(Y_{j_1}, Y_{j_2}) + I(Y_{j_3}, Y_{j_4})  + I(Y_{j_5}, Y_{j_6}) $
         \item Используем $ S = \{ 1, 2, 3, 4 \} $, $\alpha = 0.99$.
     \end{itemize}
@@ -202,7 +203,16 @@ $\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
     \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=200}.png}
 \end{frame}
 
-\begin{frame}{Результат}
+\begin{frame}[fragile]{Результат}
+    $n = 2000$
+
+    \adjustbox{max height=\dimexpr\textheight-5.5cm\relax,
+    max width=\textwidth}{
+        \input{output2000.txt}
+    }
+\end{frame}
+
+\begin{frame}[fragile]{Результат}
     $n = 2000$
 
     \includegraphics[scale=0.5]{{S=4_alpha=0.990_n=2000}.png}
