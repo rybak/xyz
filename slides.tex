@@ -98,11 +98,12 @@ $$
     $I_\alpha(\mathbf Z) = \int_{Z} \left ( \frac{f_{\mathbf Z}(\mathbf z)}{\prod_{j=1}^d f_{Z_j}(z_j)} \right )^\alpha
     \left ( \prod\limits_{j=1}^d f_{Z_j}(z_j) \right ) d {\mathbf z} = I_\alpha (\mathbf X)
     $
-    Marginals of $\mathbf Z$ равномерны  $\implies I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
+    
+    $ Z_j \sim \mathbf U[0,1] \implies I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
 \end{frame}
 
 \begin{frame}
-Copula transformation
+Копульное преобразование
 
 $\mathbf X = [X_1 \dots X_d] \to [F_1(X_1) \dots F_d(X_d)] = [Z_1 \dots Z_d] = \mathbf Z$
 
@@ -120,7 +121,9 @@ $\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
 
 \begin{frame}
     \frametitle{Эмпирическое копульное преобразование}
-$\mathbf X = ... $ 
+    $$\mathbf X = [X_1 \dots X_d] \to [F_1(X_1) \dots F_d(X_d)] = [Z_1 \dots Z_d] = \mathbf Z $$
+    Приблизим $F_1 \dots F_d $
+    $$[ X^{(1)}_j \le \dots \le X^{(n)}_j ] = sort \{X^1_j \dots X^n_j \}$$
 \end{frame}
 \begin{frame}
     \frametitle{Входные данные}
