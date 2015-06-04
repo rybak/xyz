@@ -1,4 +1,4 @@
-\documentclass[17pt]{beamer}
+\documentclass[14pt]{beamer}
 
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{amsfonts, amsxtra}
@@ -41,7 +41,7 @@
 Кравцов Никита.
 Рыбак Андрей.}
 \date{}
-
+\setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
 \begin{document}
 {
 \fontsize{14pt}{14pt}\selectfont
@@ -52,14 +52,81 @@
 }
 
 \begin{frame}
-\frametitle{Задача}
+{Взаимная информация}
+$$
+I(X) = \sum\limits_{i=1}^{d} H(X_i) - H(X_1, \dots, X_d) 
+$$
+$
+I(X_1, \dots, X_d) = 0  \iff $ independence
+
+Энтропия
+$$
+H(X_1 \dots X_d) =
+$$
+$$
+- \int f (x_1 \dots x_d) \log f (x_1 \dots x_d) d x_1 \dots d x_d
+$$
+\end{frame}
+\begin{frame}
+Информация Реньи
+$$
+I_{\alpha}  (X_1 \dots X_d)  = D_{\alpha}
+\left ( f(x_1 \dots x_d) || \prod\limits_{i=1}^d f(x_i) \right ) =
+$$
+$$
+= \frac{1}{1-\alpha} \log \int
+\left ( \frac {\prod_{i=1}^d f(x_i)} {f(x_1 \dots x_d)} \right )^{\alpha}
+f(x_1 \dots x_d) d x_1 \dots d x_d
+$$
+Энтропия Реньи
+$$
+H_{\alpha}  (X_1 \dots X_d) = \frac{1}{1-\alpha} \log \int
+f^{\alpha} (x_1 \dots x_d)  dx_1 \dots dx_d
+$$
+
+$$
+\lim_{\alpha \to 1} I_{\alpha} = I \quad \lim_{\alpha \to 1} H_{\alpha} = H
+$$
 \end{frame}
 
 \begin{frame}
+    Пусть $ \mathbf Z = (Z_1 \dots Z_d) = (g_1(X_1) \dots g_d(X_d)) = g(\mathbf X)  $, где 
+    $ g_j : \mathbb R \to \mathbb R, j = 1 \dots d $ — монотонная функция
+
+    Информация сохраняется после монотонных преобразований:
+
+    $I_\alpha(\mathbf Z) = \int_{Z} \left ( \frac{f_{\mathbf Z}(\mathbf z)}{\prod_{j=1}^d f_{Z_j}(z_j)} \right )^\alpha
+    \left ( \prod\limits_{j=1}^d f_{Z_j}(z_j) \right ) d {\mathbf z} = I_\alpha (\mathbf X)
+    $
+    Marginals of $\mathbf Z$ равномерны  $\implies I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
+\end{frame}
+
+\begin{frame}
+Copula transformation
+
+$\mathbf X = [X_1 \dots X_d] \to [F_1(X_1) \dots F_d(X_d)] = [Z_1 \dots Z_d] = \mathbf Z$
+
+$\implies I_\alpha (\mathbf X) = I_\alpha (\mathbf Z) = -H_\alpha (\mathbf Z) $
+
+Свели задачу нахождения взаимной информации к задаче нахождения энтропии Реньи.
+
+Но $F_i$ — неизвестны.
+
+\pause
+
+Решение: использовать эмпирические $F^n_j $ и эмпирическое копульное
+преобразование.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Эмпирическое копульное преобразование}
+$\mathbf X = ... $ 
+\end{frame}
+\begin{frame}
     \frametitle{Входные данные}
-    \includegraphics{x.png}
-    \includegraphics{y.png}
-    \includegraphics{z.png}
+    \includegraphics[scale=0.5]{x.png}
+    \includegraphics[scale=0.5]{y.png}
+    \includegraphics[scale=0.5]{z.png}
 \end{frame}
 \begin{frame}
 

@@ -14,3 +14,4 @@ pictures: rw.py
 
 clean :
 	rm -f *.aux *.log
+	rm -f *.toc *.out *.nav
