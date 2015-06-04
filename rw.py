@@ -29,7 +29,7 @@ eps = 1/1000000000
 
 def fromImageToArray(image):
     global sampleSize
-    f =  Image.open(image)
+    f = Image.open(image)
     data = list(f.getdata())
     a = 0
     for i in range(len(data)):
@@ -155,5 +155,5 @@ putImage(Y[0])
 putImage(Y[1])
 putImage(Y[2])
 print("Best = ", best)
-print("Maximum sum of mutual infromation = ", -best)
+print("Maximum sum of mutual information = ", -best)
 showImage()
